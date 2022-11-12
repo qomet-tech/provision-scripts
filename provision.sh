@@ -3,16 +3,26 @@
 _aws=aws
 _jq=jq
 
-region=eu-central-1
-accountId=951498986477
-iamUser=kam
-configProfile="${accountId}_$iamUser"
+region=${REGION}
+accountId=${ACCOUNT_ID}
+iamUser=${IAM_USER}
+configProfile=${CONFIG_PROFILE}
 awsConfig="--profile $configProfile --region $region"
-
-eksClusterName=$1
+eksClusterName=${CLUSTER}
 eksKubernetesVersion=1.23
 
-source _provisionLib.sh
+echo
+echo '------------------------------------------------'
+echo "region: $region"
+echo "accountId: $accountId"
+echo "iamUser: $iamUser"
+echo "configProfile: $configProfile"
+echo "awsConfig: $awsConfig"
+echo "eksClusterName: $eksClusterName"
+echo "eksKubernetesVersion: $eksKubernetesVersion"
+echo '------------------------------------------------'
+echo
 
-shift
+source provision-scripts/_provisionLib.sh
+
 "$@"
