@@ -72,7 +72,7 @@ createNodegroup() {
     --cluster-name $eksClusterName \
     --nodegroup-name $eksClusterName-nodegroup-1 \
     --subnets $(firstSubnet) \
-    --node-role arn:aws:iam::$accountId:role/eksNodeRole \
+    --node-role arn:aws:iam::$accountId:role/$eksNodeRole \
     --scaling-config minSize=1,maxSize=1,desiredSize=1 \
     --labels type=storage \
     --disk-size 20 \
@@ -139,7 +139,7 @@ createCluster() {
   $_aws $awsConfig eks create-cluster \
     --name $eksClusterName \
     --kubernetes-version $eksKubernetesVersion \
-    --role-arn arn:aws:iam::$accountId:role/eksClusterRole \
+    --role-arn arn:aws:iam::$accountId:role/$eksClusterRole \
     --resources-vpc-config subnetIds=$(subnetIds ",")
   echo 'cluster is created'
   waitForClusterCreation

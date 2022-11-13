@@ -10,6 +10,8 @@ configProfile=${CONFIG_PROFILE}
 awsConfig="--profile $configProfile --region $region"
 eksClusterName=${CLUSTER}
 eksKubernetesVersion=1.23
+eksClusterRole=${EKS_CLUSTER_ROLE}
+eksNodeRole=${EKS_NODE_ROLE}
 
 echo
 echo '------------------------------------------------'
@@ -20,6 +22,8 @@ echo "configProfile: $configProfile"
 echo "awsConfig: $awsConfig"
 echo "eksClusterName: $eksClusterName"
 echo "eksKubernetesVersion: $eksKubernetesVersion"
+echo "eksClusterRole: $eksClusterRole"
+echo "eksNodeRole: $eksNodeRole"
 echo '------------------------------------------------'
 echo
 
