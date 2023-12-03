@@ -13,23 +13,22 @@ firstSubnetAZ() {
 }
 
 createVolume() {
-  ns=$1
-  if [[ -z $ns ]]; then
+  if [[ -z ${NAMESPACE} ]]; then
       echo 'ERROR: namespace must be provided'
       exit 1
   fi
   volId=$($_aws $awsConfig ec2 create-volume \
     --availability-zone $(firstSubnetAZ) \
-    --size 1 \
+    --size ${VOLUME_SIZE} \
     --volume-type gp2 | \
     $_jq '.VolumeId' | \
     cut -d'"' -f2)
   $_aws $awsConfig ec2 create-tags \
     --resources $volId \
     --tags Key=eksCluster,Value=$eksClusterName \
-      Key=usage,Value=mongo \
-      Key=namespace,Value=$ns \
-      Key=Name,Value=$eksClusterName-$ns-mongo
+      Key=usage,Value=${VOLUME_USAGE} \
+      Key=namespace,Value=${NAMESPACE} \
+      Key=Name,Value=$eksClusterName-$namespace-${VOLUME_USAGE}
   echo "$volId is created"
 }
 
