@@ -17,9 +17,10 @@ createVolume() {
       echo 'ERROR: namespace must be provided'
       exit 1
   fi
+  volSizeGb=$2
   volId=$($_aws $awsConfig ec2 create-volume \
     --availability-zone $(firstSubnetAZ) \
-    --size ${VOLUME_SIZE} \
+    --size $volSizeGb \
     --volume-type gp2 | \
     $_jq '.VolumeId' | \
     cut -d'"' -f2)

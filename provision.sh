@@ -9,7 +9,7 @@ iamUser=${IAM_USER}
 configProfile=${CONFIG_PROFILE}
 awsConfig="--profile $configProfile --region $region"
 eksClusterName=${CLUSTER}
-eksKubernetesVersion=1.23
+eksKubernetesVersion=1.30
 eksClusterRole=${EKS_CLUSTER_ROLE}
 eksNodeRole=${EKS_NODE_ROLE}
 
