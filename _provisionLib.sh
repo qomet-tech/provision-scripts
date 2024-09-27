@@ -36,6 +36,7 @@ createVolume() {
 subnetIds() {
   $_aws $awsConfig ec2 describe-subnets | \
     $_jq '.Subnets[].SubnetId' | \
+    head -3 | \
     cut -d'"' -f2 | \
     paste -d$1 -s -
 }

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 _aws=aws
 _jq=jq
