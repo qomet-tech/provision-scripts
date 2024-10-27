@@ -27,6 +27,11 @@ echo "eksNodeRole: $eksNodeRole"
 echo '------------------------------------------------'
 echo
 
-source provision-scripts/_provisionLib.sh
+rootDir=${PWD}
+if [ ! -f ${rootDir}/provision-scripts/_provisionLib.sh ]; then
+  rootDir=${PWD}/..
+ fi
+
+source ${rootDir}/provision-scripts/_provisionLib.sh
 
 "$@"
